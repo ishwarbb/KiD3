@@ -1,4 +1,4 @@
-# Distracted-Driver
+# KiD3-Knowledge-Infused-Distracted-Driving-Detection
 This repository implements KiD3 introduced in the paper **Towards Infusing Auxiliary Knowledge for Distracted Driver
 Detection** which was accepted by KiL'24: Workshop on Knowledge-infused Learning co-located with 30th ACM KDD Conference,
 August 26, 2024, Barcelona, Spain
