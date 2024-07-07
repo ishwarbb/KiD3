@@ -20,15 +20,21 @@ import pathlib
 
 model = YOLO("yolov8m.pt")
 
+# Function to calculate the center coordinates of a bounding box
 def get_center_coordinates(bbox):
     x_min, y_min, x_max, y_max = bbox
     center_x = (x_min + x_max) / 2
     center_y = (y_min + y_max) / 2
     return center_x, center_y
 
-def get_object_info(videoName="test_video_"):
+# Function to get object detection information from a sequence of images in a specified folder
+def get_object_info(videoName):
+    # Ensure videoName is enterred
+    if videoName is None:
+        raise AssertionError("Enter a videoName")
+    
     # Get all the image paths
-    imagePaths = glob.glob(f"./sampledFrames/{videoName}/*.jpg")
+    imagePaths = glob.glob(f"./Datasets/annotatedvideosv1/AnnotatedVideos/{videoName}/*.jpg")
     print(f"Number of images: {len(imagePaths)}")
 
     # Get pose of each person in each image
@@ -36,7 +42,7 @@ def get_object_info(videoName="test_video_"):
     for i, imagePath in enumerate(imagePaths):
         objectDict[imagePath] = []
         print(f"Running inference on image {i+1} of {len(imagePaths)}")
-    
+        # print(f"imagePath = {imagePath}")
         results=model.predict(source=imagePath,
               save=True, conf=0.001,iou=0.5)
         
@@ -55,11 +61,9 @@ def get_object_info(videoName="test_video_"):
 
             objectDict[imagePath].append({"class_id": class_id, "cords": cords, "center": center, "conf": conf})
 
-        # break
-
     # Save the scene graphs in a json file
     os.makedirs("./objects/", exist_ok=True)
-    with open("./objects/objects.json", "w") as f:
+    with open(f"./objects/{videoName}.json", "w") as f:
         json.dump(objectDict, f)
 
     return objectDict
@@ -79,5 +83,12 @@ def object_details(imagePath):
         objectDict.append({"class_id": class_id, "cords": cords, "center": center, "conf": conf})
     return objectDict
 
-
-get_object_info()
+user_directories = [
+    "Dashboard_user_id_24026_3",
+    "Dashboard_user_id_24491_0",
+    "Dashboard_user_id_35133_0",
+    "Dashboard_user_id_38058_0",
+    "Dashboard_user_id_49381_0"
+]
+for user_directory in user_directories:
+    get_object_info(user_directory)
