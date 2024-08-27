@@ -40,7 +40,7 @@ Run experiments by running `experiments.py`. The results will be displayed in th
 
 If you find this repository useful in your research, please consider citing the following paper:
 
-```
+```bibtex
 @inproceedings{kiD3,
   title={Towards Infusing Auxiliary Knowledge for Distracted Driver Detection},
   author={Ishwar B Balappanawar and Ashmit Chamoli and Ruwan Wickramarachchi and Aditya Mishra and Ponnurangam Kumaraguru and Amit P. Sheth},
