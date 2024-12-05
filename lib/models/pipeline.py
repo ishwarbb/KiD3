@@ -6,7 +6,7 @@ import pickle as pkl
 
 from lib.models.linear_classifier import LinearClassifier
 from lib.models.gnn import GNN
-from lib.driving_dataset.DrivingDataset import DrivingDataset
+from lib.dataset import DrivingDataset
 
 ################################################################
 # ALGORITHM:

@@ -10,7 +10,9 @@ import torchvision.transforms as T
 import os
 import sys
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(SCRIPT_DIR)
+DIR_PATH = os.path.join(SCRIPT_DIR, 'RelTR-main')
+sys.path.append(DIR_PATH)
+print("DIR_PATH = ", DIR_PATH)
 from models import build_model
 
 def get_args_parser():

@@ -3,13 +3,16 @@ import numpy as np
 import pandas as pd
 from typing import Literal
 import sys
-sys.path.append(os.path.expanduser('~/Desktop/Distracted-Driving-Detection'))
-from lib.driving_dataset.Preprocessor import Preprocessor
+
+current_dir = os.getcwd()
+sys.path.append(current_dir)
+print(current_dir)
+
+from lib.dataset import Preprocessor
 
 DATASET_DIR = './Datasets/annotatedvideosv1/AnnotatedVideos/'
 
 preproc = Preprocessor()
-
 
 def saveSplits(trainDf: pd.DataFrame,
                devDf: pd.DataFrame,
@@ -114,4 +117,16 @@ def splitData(videoName: str) -> None:
 
 
 if __name__ == '__main__':
+    # Create sceneGraphs directory if it does not exist
+    SCENE_GRAPH_DIR = os.path.join(DATASET_DIR, "ALL/sceneGraphs")
+    if not os.path.exists(SCENE_GRAPH_DIR):
+        os.makedirs(SCENE_GRAPH_DIR)
+        print("sceneGraphs/ created")
+
+    # Create imageEmbeddings directory if it does not exist
+    IMAGE_EMBEDDINGS_DIR = os.path.join(DATASET_DIR, 'ALL/imageEmbeddings')
+    if not os.path.exists(IMAGE_EMBEDDINGS_DIR):
+        os.makedirs(IMAGE_EMBEDDINGS_DIR)
+        print("imageEmbeddings/ created")
+
     splitData('ALL/frames')

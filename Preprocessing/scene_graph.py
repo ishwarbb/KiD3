@@ -5,7 +5,7 @@ import glob
 import sys
 
 # The path below may need to be changed if the code is being run on a different device
-sys.path.append(os.path.expanduser('~/Desktop/Distracted-Driving-Detection'))
+sys.path.append(os.path.expanduser('.'))
 from RelTR.inference import run_inference
 
 DATASET_DIR = "Datasets/annotatedvideosv1/AnnotatedVideos/"

@@ -3,22 +3,25 @@ import cv2
 import matplotlib.pyplot as plt
 import copy
 import numpy as np
+import sys
+import glob
+import json
+import os
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DIR_PATH = os.path.join(SCRIPT_DIR, 'pytorch-openpose-master')
+sys.path.append(DIR_PATH)
 
 from src import model
 from src import util
 from src.body import Body
 from src.hand import Hand
 
-import glob
-import json
-import os
-
 # print current working directory
-import os
 print(os.getcwd())
 
-body_estimation = Body('./openPose/model/body_pose_model.pth')
-hand_estimation = Hand('./openPose/model/hand_pose_model.pth')
+body_estimation = Body('./Openpose/pytorch-openpose-master/model/body_pose_model.pth')
+hand_estimation = Hand('./Openpose/pytorch-openpose-master/model/hand_pose_model.pth')
 
 # draw the body keypoint and lims
 

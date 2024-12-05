@@ -102,10 +102,12 @@ class Preprocessor:
             # sceneGraph.nodeIndex = nodeIndex
             # sceneGraph.edgeAttributeIndex = edgeAttributeIndex
 
+            # print("row = ", row)
             row['SG'] = sceneGraph
 
             return row
 
+        # print("data = ", data)
         data = data.apply(getSceneGraph, axis=1)
 
         self.nodeIndex = nodeIndex
@@ -119,8 +121,9 @@ class Preprocessor:
         """
         pathToFile = os.path.join(
             DATASET_NAME, videoName, SCENEGRAPH_DIR_NAME, split + '.json')
-        
         data = pd.read_json(pathToFile, orient='index')
+        print("pathtofile = ", pathToFile)
+        print("line 126 data = ", data)
 
         return data
 
